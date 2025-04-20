@@ -18,10 +18,22 @@ def open():
             list.insert(END,i.strip())
 
 def delete():
-    pass
+    index = list.curselection()
+    if index:
+        list.delete(index)
 
 def save():
-    pass
+    #get file using dialog
+    # default extension is optional, here will add .txt if missing
+    fout = asksaveasfile(defaultextension=".txt")
+    # if file name selected
+    if fout is not None:
+        for item in list.get(0,END):
+            print(item.strip(),file=fout)
+
+        list.delete(0,END)
+
+
 
 def add():
     list.insert(END,txt.get())
